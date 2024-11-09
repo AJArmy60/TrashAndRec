@@ -3,8 +3,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.nio.file.*;
-import java.util.List;
 import java.text.DecimalFormat;
+import java.util.List;
 import javax.swing.*;
 
 public class Game extends JPanel {
@@ -149,7 +149,7 @@ public class Game extends JPanel {
         // GamePanel gamePanel = new GamePanel();
         // frame.add(gamePanel);
         Game game = new Game();
-        
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setBackground(Color.CYAN);
         frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
