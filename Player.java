@@ -10,6 +10,7 @@ public class Player {
     private int height = 64; // Height of the sprite (64px)
     private BufferedImage sprite;  // The sprite image (only one frame for now)
     private BufferedImage currentFrame; // The current frame to display
+    private Image playerImage;
 
     public Player(int startX, int startY) {
         this.x = startX;
@@ -24,24 +25,6 @@ public class Player {
         }
     }
 
-    // This method moves the player and updates the animation frames.
-    public void move(int dx) {
-        // Calculate the potential new position
-        int newX = x + dx;
-
-        // If moving to the right, flip the sprite horizontally
-        if (dx > 0) {
-            currentFrame = flipImage(sprite); // Flip sprite horizontally for right movement
-        }
-        // If moving to the left, keep the sprite as is
-        else if (dx < 0) {
-            currentFrame = sprite; // Use the normal sprite for left movement
-        }
-
-        // Update X position
-        x = newX;
-    }
-
     // Flip the sprite horizontally for right movement
     private BufferedImage flipImage(BufferedImage img) {
         int w = img.getWidth();
@@ -51,6 +34,45 @@ public class Player {
         g.drawImage(img, w, 0, -w, h, null);  // Flip image horizontally
         g.dispose();
         return flipped;
+    }
+    // This method moves the player, making sure they don't move outside the boundaries.
+
+    
+    public void swing(int input) {
+        // 1 is left swing
+        // 2 is right swing
+        if(input == 1){
+            updatePlayerImage(1);
+        }
+        else if(input == 2) {
+            updatePlayerImage(2);
+        }
+        else{
+            updatePlayerImage(3);
+        }
+    }
+
+    public void updatePlayerImage(int state){
+        switch (state){
+            case 1:
+                this.setPlayerImage("left"); //player swing left
+                break;
+            case 2:
+                this.setPlayerImage("right"); //player swing right
+                break;
+            default:
+                this.setPlayerImage("default"); //default stance
+        }
+    
+    }
+
+    public void setPlayerImage(String imageName){
+        try {
+            this.playerImage = ImageIO.read(new File("art\\player.png"));
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     // Draw the player image on the screen
