@@ -1,12 +1,12 @@
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.*;
 
 public class Game extends JPanel {
 
-    private static final int WINDOW_WIDTH = 800;
-    private static final int WINDOW_HEIGHT = 600;
+    private static final int WINDOW_WIDTH = 1400;
+    private static final int WINDOW_HEIGHT = 800;
 
     private boolean upPressed = false;
     private boolean downPressed = false;
@@ -16,7 +16,7 @@ public class Game extends JPanel {
     private Player player;
 
     public Game() {
-        player = new Player(100, 100);
+        player = new Player(WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
 
         // Key listener for controlling player movement
         this.addKeyListener(new KeyAdapter() {
