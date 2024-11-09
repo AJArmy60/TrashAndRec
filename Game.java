@@ -2,8 +2,13 @@ import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.*;
+import java.text.DecimalFormat;
 
 public class Game extends JPanel {
+
+    private long startTime;
+    private JLabel timeLabel;
+    private Timer timer;
 
     private static final int WINDOW_WIDTH = 1400;
     private static final int WINDOW_HEIGHT = 800;
@@ -16,6 +21,21 @@ public class Game extends JPanel {
     private Player player;
 
     public Game() {
+
+        //Timer Stuff
+        timeLabel = new JLabel("0", SwingConstants.CENTER);
+        timeLabel.setFont(new Font("Arial", Font.BOLD, 30));
+        timeLabel.setForeground(Color.BLACK);
+
+        timeLabel.setBounds(700, 100, 100, 40);  // Adjust position and size
+        setLayout(null);  // Use absolute positioning
+        add(timeLabel);
+
+        startTime = System.currentTimeMillis();
+
+        timer = new Timer(1, e -> updateTime());
+        timer.start();
+        
         player = new Player(WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
 
         // Key listener for controlling player movement
@@ -42,6 +62,7 @@ public class Game extends JPanel {
 
     // Game loop
     public void gameLoop() {
+        
         // Main game loop
         long lastTime = System.nanoTime();
         final double nsPerTick = 1000000000.0 / 60.0;  // 60 FPS
@@ -74,12 +95,23 @@ public class Game extends JPanel {
         if (rightPressed) player.move(5, 0);
     }
 
+    private void updateTime() {
+        long currentTime = System.currentTimeMillis();
+        long elapsedTime = currentTime - startTime;
+
+        // Format the elapsed time to be displayed
+        DecimalFormat df = new DecimalFormat("#,###");
+        timeLabel.setText(df.format(elapsedTime));  // Update the label with formatted time
+    }
+
     // Render game scene
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         player.draw(g);
     }
+
+    
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("Simple Game Engine");
@@ -91,4 +123,5 @@ public class Game extends JPanel {
 
         game.gameLoop();  // Start the game loop
     }
+    
 }
