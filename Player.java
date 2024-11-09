@@ -58,7 +58,7 @@ public class Player {
 
     public void setPlayerImage(String imageName){
         try {
-            this.playerImage = ImageIO.read(new File("art\\player.png"));
+            this.playerImage = ImageIO.read(new File("art\\PlayerTileset.png"));
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
