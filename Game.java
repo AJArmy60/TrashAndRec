@@ -101,8 +101,8 @@ public class Game extends JPanel {
     private void update() {
         // if (upPressed) player.move(0, -5);
         // if (downPressed) player.move(0, 5);
-        if (leftPressed) player.move(-5, 0);
-        if (rightPressed) player.move(5, 0);
+        if (leftPressed) player.swing(1); //swing left
+        if (rightPressed) player.swing(2); //swing right
     }
 
     private void updateTime() {
@@ -144,15 +144,19 @@ public class Game extends JPanel {
    }
        
    
-       public static void main(String[] args) {
-           JFrame frame = new JFrame("Simple Game Engine");
-           Game game = new Game();
-           frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-           frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-           frame.add(game);
-           frame.setVisible(true);
-           fileReader();
 
+
+    
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Trash and Rec");
+        Game game = new Game();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setBackground(Color.CYAN);
+        frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+        frame.add(game);
+        frame.setVisible(true);
+        fileReader();
         game.gameLoop();  // Start the game loop
     }
     
