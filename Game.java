@@ -1,11 +1,13 @@
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.List;
 import java.text.DecimalFormat;
 import javax.swing.*;
+import javax.sound.sampled.*;
 
 public class Game extends JPanel {
 
@@ -14,7 +16,7 @@ public class Game extends JPanel {
     private Timer timer;
 
     //file reader and array stuff
-    private static Path filePath;
+    private static Path filePathNotes;
     private static List<String> lines;
     private static String[] notes;
 
@@ -29,8 +31,6 @@ public class Game extends JPanel {
     private boolean rightPressed = false;
 
     private Player player;
-    private Bin trashBin;
-    private Bin recycleBin;
 
     public Game() {
 
@@ -49,8 +49,6 @@ public class Game extends JPanel {
         timer.start();
         
         player = new Player(WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
-        trashBin = new Bin(200, 200, true);
-        recycleBin = new Bin(200, 400, false);
 
         // Key listener for controlling player movement
         this.addKeyListener(new KeyAdapter() {
@@ -123,8 +121,6 @@ public class Game extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         player.draw(g);
-        recycleBin.draw(g);
-        trashBin.draw(g);
     }
 
    public static void fileReader(){
@@ -158,6 +154,7 @@ public class Game extends JPanel {
         JFrame frame = new JFrame("Trash and Rec");
         Game game = new Game();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setBackground(Color.CYAN);
         frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         frame.add(game);
         frame.setVisible(true);
