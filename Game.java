@@ -1,8 +1,8 @@
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import javax.swing.*;
 import java.text.DecimalFormat;
+import javax.swing.*;
 
 public class Game extends JPanel {
 
@@ -13,8 +13,8 @@ public class Game extends JPanel {
     private static final int WINDOW_WIDTH = 1400;
     private static final int WINDOW_HEIGHT = 800;
 
-    private boolean upPressed = false;
-    private boolean downPressed = false;
+    // private boolean upPressed = false;
+    // private boolean downPressed = false;
     private boolean leftPressed = false;
     private boolean rightPressed = false;
 
@@ -27,7 +27,7 @@ public class Game extends JPanel {
         timeLabel.setFont(new Font("Arial", Font.BOLD, 30));
         timeLabel.setForeground(Color.BLACK);
 
-        timeLabel.setBounds(700, 100, 100, 40);  // Adjust position and size
+        timeLabel.setBounds(WINDOW_WIDTH/2, WINDOW_HEIGHT/6, 100, 40);  // Adjust position and size
         setLayout(null);  // Use absolute positioning
         add(timeLabel);
 
@@ -42,16 +42,16 @@ public class Game extends JPanel {
         this.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
                 int key = e.getKeyCode();
-                if (key == KeyEvent.VK_UP) upPressed = true;
-                if (key == KeyEvent.VK_DOWN) downPressed = true;
+                // if (key == KeyEvent.VK_UP) upPressed = true;
+                // if (key == KeyEvent.VK_DOWN) downPressed = true;
                 if (key == KeyEvent.VK_LEFT) leftPressed = true;
                 if (key == KeyEvent.VK_RIGHT) rightPressed = true;
             }
 
             public void keyReleased(KeyEvent e) {
                 int key = e.getKeyCode();
-                if (key == KeyEvent.VK_UP) upPressed = false;
-                if (key == KeyEvent.VK_DOWN) downPressed = false;
+                // if (key == KeyEvent.VK_UP) upPressed = false;
+                // if (key == KeyEvent.VK_DOWN) downPressed = false;
                 if (key == KeyEvent.VK_LEFT) leftPressed = false;
                 if (key == KeyEvent.VK_RIGHT) rightPressed = false;
             }
@@ -89,8 +89,8 @@ public class Game extends JPanel {
 
     // Update game state
     private void update() {
-        if (upPressed) player.move(0, -5);
-        if (downPressed) player.move(0, 5);
+        // if (upPressed) player.move(0, -5);
+        // if (downPressed) player.move(0, 5);
         if (leftPressed) player.move(-5, 0);
         if (rightPressed) player.move(5, 0);
     }
@@ -101,7 +101,7 @@ public class Game extends JPanel {
 
         // Format the elapsed time to be displayed
         DecimalFormat df = new DecimalFormat("#,###");
-        timeLabel.setText(df.format(elapsedTime));  // Update the label with formatted time
+        timeLabel.setText(df.format(elapsedTime/1000));  // Update the label with formatted time
     }
 
     // Render game scene
