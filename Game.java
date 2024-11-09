@@ -13,8 +13,6 @@ public class Game extends JPanel {
     private static final int WINDOW_WIDTH = 1400;
     private static final int WINDOW_HEIGHT = 800;
 
-    // private boolean upPressed = false;
-    // private boolean downPressed = false;
     private boolean leftPressed = false;
     private boolean rightPressed = false;
 
@@ -42,18 +40,14 @@ public class Game extends JPanel {
         this.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
                 int key = e.getKeyCode();
-                // if (key == KeyEvent.VK_UP) upPressed = true;
-                // if (key == KeyEvent.VK_DOWN) downPressed = true;
-                if (key == KeyEvent.VK_LEFT) leftPressed = true;
-                if (key == KeyEvent.VK_RIGHT) rightPressed = true;
+                if (key == KeyEvent.VK_A) leftPressed = true;
+                if (key == KeyEvent.VK_D) rightPressed = true;
             }
 
             public void keyReleased(KeyEvent e) {
                 int key = e.getKeyCode();
-                // if (key == KeyEvent.VK_UP) upPressed = false;
-                // if (key == KeyEvent.VK_DOWN) downPressed = false;
-                if (key == KeyEvent.VK_LEFT) leftPressed = false;
-                if (key == KeyEvent.VK_RIGHT) rightPressed = false;
+                if (key == KeyEvent.VK_A) leftPressed = false;
+                if (key == KeyEvent.VK_D) rightPressed = false;
             }
         });
 
@@ -91,8 +85,8 @@ public class Game extends JPanel {
     private void update() {
         // if (upPressed) player.move(0, -5);
         // if (downPressed) player.move(0, 5);
-        if (leftPressed) player.move(-5, 0);
-        if (rightPressed) player.move(5, 0);
+        if (leftPressed) player.move(-5);
+        if (rightPressed) player.move(5);
     }
 
     private void updateTime() {
@@ -115,6 +109,11 @@ public class Game extends JPanel {
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("Simple Game Engine");
+        
+        // Create the game panel and add it to the frame
+        // GamePanel gamePanel = new GamePanel();
+        // frame.add(gamePanel);
+
         Game game = new Game();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
