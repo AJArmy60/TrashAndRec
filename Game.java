@@ -4,10 +4,10 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
-import java.util.List;
 import java.text.DecimalFormat;
-import javax.swing.*;
+import java.util.List;
 import javax.sound.sampled.*;
+import javax.swing.*;
 
 public class Game extends JPanel {
 

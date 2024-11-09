@@ -19,7 +19,7 @@ public class Player {
         
         // Load the player image
         try {
-            playerImage = ImageIO.read(new File("art\\Trash.png")); // Make sure the image is in the correct path
+            playerImage = ImageIO.read(new File("art\\PlayerTileset.png")); // Make sure the image is in the correct path
             width = playerImage.getWidth(null);  // Set the width of the player to the image's width
             height = playerImage.getHeight(null); // Set the height of the player to the image's height
         } catch (IOException e) {
@@ -58,7 +58,7 @@ public class Player {
 
     public void setPlayerImage(String imageName){
         try {
-            this.playerImage = ImageIO.read(new File("art\\player.png"));
+            this.playerImage = ImageIO.read(new File("art\\PlayerTileset.png"));
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
