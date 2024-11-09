@@ -19,7 +19,7 @@ public class Player {
         
         // Load the player image
         try {
-            playerImage = ImageIO.read(new File("C:/Users/mvp15/OneDrive/Documents/Hackathon/Resources/player.png")); // Make sure the image is in the correct path
+            playerImage = ImageIO.read(new File("C:/Users/mvp15/OneDrive/Documents/Hackathon/TrashAndRec-3/art/player.png")); // Make sure the image is in the correct path
             width = playerImage.getWidth(null);  // Set the width of the player to the image's width
             height = playerImage.getHeight(null); // Set the height of the player to the image's height
         } catch (IOException e) {
