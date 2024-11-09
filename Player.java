@@ -28,9 +28,36 @@ public class Player {
     }
 
     // This method moves the player, making sure they don't move outside the boundaries.
-    public void move(int dx, int dy) {
-        this.x += dx;
-        this.y += dy;
+    public void swing(int input) {
+        // 1 is left swing
+        // 2 is right swing
+        if(input == 1){
+            updatePlayerImage(1);
+        }
+        else if(input == 2) {
+            updatePlayerImage(2);
+        }
+        else{
+            updatePlayerImage(3);
+        }
+    }
+
+    public void updatePlayerImage(int state){
+        switch (state){
+            case 1:
+                this.setPlayerImage("left"); //player swing left
+                break;
+            case 2:
+                this.setPlayerImage("right"); //player swing right
+                break;
+            default:
+                this.setPlayerImage("default"); //default stance
+        }
+    
+    }
+
+    public void setPlayerImage(String imageName){
+        this.playerImage = ImageIO.read(new File(imageName));
     }
 
     // Draw the player image on the screen

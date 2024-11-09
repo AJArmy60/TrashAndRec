@@ -1,14 +1,15 @@
 public class Trash {
     private Boolean isRecycle;     // Type of trash, e.g., "Plastic", "Paper", "Metal"
     private String correctBin; // The correct bin for this item, e.g., "Recycling" or "Garbage"
-    private int position;    // Position on the screen for timing
+    private int Xposition;    // Xposition on the screen for timing
     private boolean sorted;  // Whether the item has been sorted or not
+    private int Yposition = 700;
 
     // Constructor
-    public Trash(Boolean isRecycle, String correctBin, int position) {
+    public Trash(Boolean isRecycle, String correctBin, int Xposition) {
         this.isRecycle = isRecycle;
         this.correctBin = correctBin;
-        this.position = position;
+        this.Xposition = Xposition;
         this.sorted = false;
     }
 
@@ -24,9 +25,9 @@ public class Trash {
         }
     }
 
-    // Update position over time to simulate movement
-    public void updatePosition(int speed) {
-        this.position += speed;  // Adjust position according to game speed
+    // Update Xposition over time to simulate movement
+    public void updateXposition(int speed) {
+        this.Xposition += speed;  // Adjust Xposition according to game speed
     }
 
     // Getters and Setters
@@ -38,8 +39,8 @@ public class Trash {
         return correctBin;
     }
 
-    public int getPosition() {
-        return position;
+    public int getXposition() {
+        return Xposition;
     }
 
     public boolean isSorted() {
