@@ -1,6 +1,9 @@
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
+import java.nio.file.*;
+import java.util.List;
 import java.text.DecimalFormat;
 import javax.swing.*;
 
@@ -9,6 +12,13 @@ public class Game extends JPanel {
     private long startTime;
     private JLabel timeLabel;
     private Timer timer;
+
+    //file reader and array stuff
+    private static Path filePath;
+    private static List<String> lines;
+    private static String[] notes;
+
+    //private String[] lines = new String[];
 
     private static final int WINDOW_WIDTH = 1400;
     private static final int WINDOW_HEIGHT = 800;
@@ -111,15 +121,37 @@ public class Game extends JPanel {
         player.draw(g);
     }
 
-    
-
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Simple Game Engine");
-        Game game = new Game();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-        frame.add(game);
-        frame.setVisible(true);
+   public static void fileReader(){
+       filePath = Paths.get("Music map\\musicMap.txt");
+   
+           try {
+               // Read all lines from the file into a List using Files.lines()
+               lines = Files.readAllLines(filePath);
+   
+               // Convert List to an Array
+               notes = lines.toArray(new String[0]);
+   
+               // Output the array contents (lines)
+               for (String line : notes) {
+                   System.out.println(line);
+               }
+   
+           } catch (IOException e) {
+               // Handle file not found or reading errors
+               e.printStackTrace();
+   
+      }
+   }
+       
+   
+       public static void main(String[] args) {
+           JFrame frame = new JFrame("Simple Game Engine");
+           Game game = new Game();
+           frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+           frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+           frame.add(game);
+           frame.setVisible(true);
+           fileReader();
 
         game.gameLoop();  // Start the game loop
     }
