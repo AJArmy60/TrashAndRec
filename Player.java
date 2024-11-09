@@ -53,7 +53,6 @@ public class Player {
             default:
                 this.setPlayerImage("default"); //default stance
         }
-    
     }
 
     public void setPlayerImage(String imageName){

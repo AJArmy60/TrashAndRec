@@ -31,6 +31,8 @@ public class Game extends JPanel {
     private boolean rightPressed = false;
 
     private Player player;
+    private Bin recycleBin;
+    private Bin trashBin;
 
     public Game() {
 
@@ -49,6 +51,8 @@ public class Game extends JPanel {
         timer.start();
         
         player = new Player(WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
+        trashBin = new Bin(200, 200, true);
+        recycleBin = new Bin (200, 400, false);
 
         // Key listener for controlling player movement
         this.addKeyListener(new KeyAdapter() {
@@ -121,14 +125,16 @@ public class Game extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         player.draw(g);
+        recycleBin.draw(g);
+        trashBin.draw(g);
     }
 
    public static void fileReader(){
-       filePath = Paths.get("Music map\\musicMap.txt");
+       notes = Paths.get("Music map\\musicMap.txt");
    
            try {
                // Read all lines from the file into a List using Files.lines()
-               lines = Files.readAllLines(filePath);
+               lines = Files.readAllLines(notes);
    
                // Convert List to an Array
                notes = lines.toArray(new String[0]);
@@ -141,20 +147,13 @@ public class Game extends JPanel {
            } catch (IOException e) {
                // Handle file not found or reading errors
                e.printStackTrace();
-   
       }
    }
-       
-   
-
-
-    
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("Trash and Rec");
         Game game = new Game();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setBackground(Color.CYAN);
         frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         frame.add(game);
         frame.setVisible(true);
